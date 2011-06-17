@@ -1,0 +1,75 @@
+<project name="My Project" default="init">
+
+	<!-- load previously defined configuration properties file -->
+	<property file="build.properties" />
+
+      <macrodef name = "git">
+          <attribute name = "command" />
+          <attribute name = "dir" default = "" />
+          <element name = "args" optional = "true" />
+          <sequential>
+              <echo message = "git @{command}" />
+              <exec executable = "git" dir = "@{dir}">
+                  <arg value = "@{command}" />
+                  <args/>
+              </exec>
+          </sequential>
+      </macrodef>
+      
+      <macrodef name = "git-clone-pull">
+          <attribute name = "repository" />
+          <attribute name = "dest" />
+          <sequential>
+              <git command = "clone">
+                  <args>
+                      <arg value = "@{repository}" />
+                      <arg value = "@{dest}" />
+                  </args>
+              </git>
+              <git command = "pull" dir = "@{dest}" />
+          </sequential>
+      </macrodef>
+
+  <!-- Initialize RobotLegs local directory and clone -->
+  <target name="init" depends="cleanup">
+    <echo message="All RobotLegs targets ran successfully." />
+  </target>
+  
+  <target name="buildRobotLegs" depends="cloneRobotLegs">
+    <echo message="Building the RobotLegs swc." />
+    <ant antfile="${ROBOTLEGS_LOCAL}/build.xml" dir="${ROBOTLEGS_LOCAL}" target="compile"/>
+    <echo message="RobotLegs swc created successfully." />
+  </target>
+  
+  <target name="cleanup" depends="buildRobotLegs">
+    <echo message="Moving the RobotLegs swc." />
+      <copy todir="${LIB_LOC}">
+        <fileset dir="${ROBOTLEGS_LOCAL}/bin">
+          <include name="**/*.swc"/>
+        </fileset>
+      </copy> 	
+    <echo message="The RobotLegs swc been copied." />
+
+    <echo message="Remove the RobotLegs clone" />
+    <delete dir="${ROBOTLEGS_LOCAL}" />
+  </target>
+  
+  <target name="cloneRobotLegs" depends="createRobotLegsLocation">
+    <echo message="Cloning RobotLegs." />
+      <git command = "clone">
+        <args>
+          <arg value = "${ROBOTLEGS_REMOTE}" />
+          <arg value = "${ROBOTLEGS_LOCAL}" />
+        </args>
+      </git>
+    <echo message="Cloning RobotLegs." />
+  </target>
+  
+  <target name="createRobotLegsLocation">
+    <echo message="Creating RobotLegs local directory." />
+      <delete dir="${ROBOTLEGS_LOCAL}" />
+      <mkdir dir="${ROBOTLEGS_LOCAL}" />
+    <echo message="RobotLegs local directory created successfully." />
+  </target>
+	    
+</project>

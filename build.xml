@@ -3,9 +3,13 @@
 	<!-- load previously defined configuration properties file -->
 	<property file="build.properties" />
 
-	<!-- Initialize the targets -->
-	<target name="init">
+	<!-- Initialize RobotLegs local directory and clone -->
+	<target name="init" depends="buildRobotLegs">
 		<echo message="All targets ran successfully." />
-	</target>
+    </target>
+    
+    <target name="buildRobotLegs">
+      <ant antfile="${ROBOTLEGS_BUILD}"/>
+    </target>
 
 </project>
