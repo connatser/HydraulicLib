@@ -1,0 +1,11 @@
+<project name="My Project" default="init">
+
+	<!-- load previously defined configuration properties file -->
+	<property file="build.properties" />
+
+	<!-- Initialize the targets -->
+	<target name="init">
+		<echo message="All targets ran successfully." />
+	</target>
+
+</project>
