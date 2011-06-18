@@ -1,8 +1,8 @@
 h1. HydraulicLib
 
-h2. What does this build structure do?
+h2. What does HydraulicLib do?
 
-HydraulicLib is a free build structure to help automatically clone and build your favorite open source libraries.
+HydraulicLib is a build aggregator to help automatically clone and build your favorite open source libraries, in one command.
 
 Included initially is linkage to:
 * "RobotLegs":http://www.robotlegs.org/
@@ -11,11 +11,7 @@ Included initially is linkage to:
 
 h2. What happens "behind the scenes"?
 
-HydraulicLib is an set of build structures that physically clones the included open source libraries from github,
-executes their build scripts, relocates the combined swc to your set library location, then cleans out the cloned source
-files. The idea is to be able to update your local library versions of your favorite open source libraries easily, with
-you build script. By using the original author's build scripts and cloning from their actual repository, you can rest
-assured that you will grab the latest and greatest versions of these great libraries.
+HydraulicLib is an set of build structures that physically clones the included open source libraries from github, executes their build scripts, relocates the combined swc to your set library location, then cleans out the cloned source files. The idea is to be able to update your local library versions of your favorite open source libraries easily, with one build script. By using the original author's build scripts and cloning from their actual repository, you can rest assured that you will grab the latest and greatest versions of these great libraries.
 
 
 h2. How to use HydraulicLib
@@ -30,3 +26,12 @@ To run HydraulicLib ensure that:
 # you have the FLEX_HOME environment variable set, as described above.
 # you clone or download this repository and simply run the default build.xml file e.g. "ant".
 
+h2. Other info, etc., etc.
+
+This build structure is intended to make life easier by aggregating the build of the Flash communities most useful libraries, that are hosted on GitHub and are open source. HydraulicLib does not replace, alter or remove any of the original author's source code, it simply clones the source code just as you could manually. No code ownership is assumed to be taken from the original author of any of the libraries that are referenced and each will be given their full credit.
+
+If you would like more libraries to be added to this build structure feel free to ask, or go fork it yourself and submit a pull request.
+
+h2. Due credit (keeping it real)
+
+HydraulicLib utilizes an Ant macrodef created by "Thomas Robinson":http://tlrobinson.net/blog/2008/11/13/ant-tasks-for-git/
