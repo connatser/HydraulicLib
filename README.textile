@@ -7,6 +7,7 @@ HydraulicLib is a build aggregator to help automatically clone and build your fa
 Included initially is linkage to:
 * "AS3Signals":https://github.com/robertpenner/as3-signals/wiki
 * "AS3CoreLib":https://github.com/mikechambers/as3corelib
+* "FlexUnit":http://flexunit.org/
 * "MinimalComps":http://www.minimalcomps.com/
 * "Mockolate":http://mockolate.org/
 * "RobotLegs":http://www.robotlegs.org/

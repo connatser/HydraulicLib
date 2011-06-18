@@ -1,0 +1,73 @@
+<project name="BuildFlexUnit" default="init">
+
+    <property file="build.properties"/>
+
+    <macrodef name="git">
+        <attribute name="command"/>
+        <attribute name="dir" default=""/>
+        <element name="args" optional="true"/>
+        <sequential>
+            <echo message="git @{command}"/>
+            <exec executable="git" dir="@{dir}">
+                <arg value="@{command}"/>
+                <args/>
+            </exec>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="git-clone-pull">
+        <attribute name="repository"/>
+        <attribute name="dest"/>
+        <sequential>
+            <git command="clone">
+                <args>
+                    <arg value="@{repository}"/>
+                    <arg value="@{dest}"/>
+                </args>
+            </git>
+            <git command="pull" dir="@{dest}"/>
+        </sequential>
+    </macrodef>
+
+    <target name="init" depends="cleanup">
+        <echo message="All FlexUnit targets ran successfully."/>
+    </target>
+
+    <target name="buildFlexUnit" depends="cloneFlexUnit">
+        <echo message="Building the FlexUnit swc."/>
+        <ant antfile="${FLEXUNIT_LOCAL}/build.xml" dir="${FLEXUNIT_LOCAL}" target="package"/>
+        <echo message="FlexUnit swc created successfully."/>
+    </target>
+
+    <target name="cleanup" depends="buildFlexUnit">
+        <echo message="Moving the FlexUnit swc."/>
+        <copy todir="${LIB_LOC}">
+            <fileset dir="${FLEXUNIT_LOCAL}/FlexUnit4/target/bin">
+                <include name="**/*.swc"/>
+            </fileset>
+        </copy>
+        <echo message="The FlexUnit swc been copied."/>
+
+        <echo message="Remove the FlexUnit clone"/>
+        <delete dir="${FLEXUNIT_LOCAL}"/>
+    </target>
+
+    <target name="cloneFlexUnit" depends="createFlexUnitLocation">
+        <echo message="Cloning FlexUnit."/>
+        <git command="clone">
+            <args>
+                <arg value="${FLEXUNIT_REMOTE}"/>
+                <arg value="${FLEXUNIT_LOCAL}"/>
+            </args>
+        </git>
+        <echo message="Cloning FlexUnit complete."/>
+    </target>
+
+    <target name="createFlexUnitLocation">
+        <echo message="Creating FlexUnit local directory."/>
+        <delete dir="${FLEXUNIT_LOCAL}"/>
+        <mkdir dir="${FLEXUNIT_LOCAL}"/>
+        <echo message="FlexUnit local directory created successfully."/>
+    </target>
+
+</project>
