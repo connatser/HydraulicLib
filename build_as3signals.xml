@@ -1,4 +1,4 @@
-<project name="BuildRobotLegs" default="init">
+<project name="BuildAS3Signals" default="init">
 
 	<!-- load previously defined configuration properties file -->
 	<property file="build.properties" />
@@ -32,44 +32,44 @@
 
   <!-- Initialize RobotLegs local directory and clone -->
   <target name="init" depends="cleanup">
-    <echo message="All RobotLegs targets ran successfully." />
+    <echo message="All AS3Signals targets ran successfully." />
   </target>
   
-  <target name="buildRobotLegs" depends="cloneRobotLegs">
-    <echo message="Building the RobotLegs swc." />
-    <ant antfile="${ROBOTLEGS_LOCAL}/build.xml" dir="${ROBOTLEGS_LOCAL}" target="compile"/>
-    <echo message="RobotLegs swc created successfully." />
+  <target name="buildAS3Signals" depends="cloneAS3Signals">
+    <echo message="Building the AS3Signals swc." />
+    <ant antfile="${AS3SIGNALS_LOCAL}/build.xml" dir="${AS3SIGNALS_LOCAL}" target="swc"/>
+    <echo message="AS3Signals swc created successfully." />
   </target>
   
-  <target name="cleanup" depends="buildRobotLegs">
-    <echo message="Moving the RobotLegs swc." />
+  <target name="cleanup" depends="buildAS3Signals">
+    <echo message="Moving the AS3Signals swc." />
       <copy todir="${LIB_LOC}">
-        <fileset dir="${ROBOTLEGS_LOCAL}/bin">
+        <fileset dir="${AS3SIGNALS_LOCAL}/bin">
           <include name="**/*.swc"/>
         </fileset>
       </copy> 	
-    <echo message="The RobotLegs swc been copied." />
+    <echo message="The AS3Signals swc been copied." />
 
-    <echo message="Remove the RobotLegs clone" />
-    <delete dir="${ROBOTLEGS_LOCAL}" />
+    <echo message="Remove the AS3Signals clone" />
+    <delete dir="${AS3SIGNALS_LOCAL}" />
   </target>
   
-  <target name="cloneRobotLegs" depends="createRobotLegsLocation">
-    <echo message="Cloning RobotLegs." />
+  <target name="cloneAS3Signals" depends="createAS3SignalsLocation">
+    <echo message="Cloning AS3Signals." />
       <git command = "clone">
         <args>
-          <arg value = "${ROBOTLEGS_REMOTE}" />
-          <arg value = "${ROBOTLEGS_LOCAL}" />
+          <arg value = "${AS3SIGNALS_REMOTE}" />
+          <arg value = "${AS3SIGNALS_LOCAL}" />
         </args>
       </git>
-    <echo message="Cloning RobotLegs." />
+    <echo message="Cloning AS3Signals." />
   </target>
   
-  <target name="createRobotLegsLocation">
-    <echo message="Creating RobotLegs local directory." />
-      <delete dir="${ROBOTLEGS_LOCAL}" />
-      <mkdir dir="${ROBOTLEGS_LOCAL}" />
-    <echo message="RobotLegs local directory created successfully." />
+  <target name="createAS3SignalsLocation">
+    <echo message="Creating AS3Signals local directory." />
+      <delete dir="${AS3SIGNALS_LOCAL}" />
+      <mkdir dir="${AS3SIGNALS_LOCAL}" />
+    <echo message="AS3Signals local directory created successfully." />
   </target>
 	    
 </project>

@@ -4,12 +4,16 @@
 	<property file="build.properties" />
 
 	<!-- Initialize RobotLegs local directory and clone -->
-	<target name="init" depends="buildRobotLegs">
+	<target name="init" depends="buildRobotLegs, buildAS3Signals">
 		<echo message="All targets ran successfully." />
     </target>
     
     <target name="buildRobotLegs">
       <ant antfile="${ROBOTLEGS_BUILD}"/>
+    </target>
+	
+	<target name="buildAS3Signals">
+      <ant antfile="${AS3SIGNALS_BUILD}"/>
     </target>
 
 </project>
