@@ -1,0 +1,74 @@
+<project name="BuildRobotLegs" default="init">
+
+    <property file="build.properties"/>
+
+    <macrodef name="git">
+        <attribute name="command"/>
+        <attribute name="dir" default=""/>
+        <element name="args" optional="true"/>
+        <sequential>
+            <echo message="git @{command}"/>
+            <exec executable="git" dir="@{dir}">
+                <arg value="@{command}"/>
+                <args/>
+            </exec>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="git-clone-pull">
+        <attribute name="repository"/>
+        <attribute name="dest"/>
+        <sequential>
+            <git command="clone">
+                <args>
+                    <arg value="@{repository}"/>
+                    <arg value="@{dest}"/>
+                </args>
+            </git>
+            <git command="pull" dir="@{dest}"/>
+        </sequential>
+    </macrodef>
+
+    <target name="init" depends="cleanup">
+        <echo message="All Mockolate targets ran successfully."/>
+    </target>
+
+    <target name="buildMockolate" depends="cloneMockolate">
+        <echo message="Building the Mockolate swc."/>
+        <mkdir dir="${MOCKOLATE_LOCAL}/bin"/>
+        <ant antfile="${MOCKOLATE_LOCAL}/build.xml" dir="${MOCKOLATE_LOCAL}" target="compile"/>
+        <echo message="Mockolate swc created successfully."/>
+    </target>
+
+    <target name="cleanup" depends="buildMockolate">
+        <echo message="Moving the Mockolate swc."/>
+        <copy todir="${LIB_LOC}">
+            <fileset dir="${MOCKOLATE_LOCAL}/target/bin">
+                <include name="**/*.swc"/>
+            </fileset>
+        </copy>
+        <echo message="The Mockolate swc been copied."/>
+
+        <echo message="Remove the Mockolate clone"/>
+        <delete dir="${MOCKOLATE_LOCAL}"/>
+    </target>
+
+    <target name="cloneMockolate" depends="createMockolateLocation">
+        <echo message="Cloning Mockolate."/>
+        <git command="clone">
+            <args>
+                <arg value="${MOCKOLATE_REMOTE}"/>
+                <arg value="${MOCKOLATE_LOCAL}"/>
+            </args>
+        </git>
+        <echo message="Cloning Mockolate complete."/>
+    </target>
+
+    <target name="createMockolateLocation">
+        <echo message="Creating Mockolate local directory."/>
+        <delete dir="${MOCKOLATE_LOCAL}"/>
+        <mkdir dir="${MOCKOLATE_LOCAL}"/>
+        <echo message="Mockolate local directory created successfully."/>
+    </target>
+
+</project>
