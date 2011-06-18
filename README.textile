@@ -3,10 +3,19 @@ h1. HydraulicLib
 h2. What does this build structure do?
 
 HydraulicLib is a free build structure to help automatically clone and build your favorite open source libraries.
+
 Included initially is linkage to:
-* RobotLegs
-* AS3Signals
-* MinimalComps.
+* "RobotLegs":http://www.robotlegs.org/
+* "AS3Signals":https://github.com/robertpenner/as3-signals/wiki
+* "MinimalComps":http://www.minimalcomps.com/
+
+h2. What happens "behind the scenes"?
+
+HydraulicLib is an set of build structures that physically clones the included open source libraries from github,
+executes their build scripts, relocates the combined swc to your set library location, then cleans out the cloned source
+files. The idea is to be able to update your local library versions of your favorite open source libraries easily, with
+you build script. By using the original author's build scripts and cloning from their actual repository, you can rest
+assured that you will grab the latest and greatest versions of these great libraries.
 
 
 h2. How to use HydraulicLib
