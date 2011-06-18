@@ -21,11 +21,12 @@ assured that you will grab the latest and greatest versions of these great libra
 h2. How to use HydraulicLib
 
 All of the libraries that are included rely on the FLEX_HOME environment variable being set.
-To set the FLEX_HOME environment variable use "export FLEX_HOME=[PATH TO YOUR FLEX SDK]".
+To set the FLEX_HOME environment variable use:
+* export FLEX_HOME=[PATH TO YOUR FLEX SDK]
 
 To run HydraulicLib ensure that:
-* you have git installed - git-scm.com
-* you have Ant installed - http://ant.apache.org/
-* you have the FLEX_HOME environment variable set, as described above.
-* you clone or download this repository and simply run the default build.xml file e.g. "ant".
+# you have git installed - git-scm.com
+# you have Ant installed - http://ant.apache.org/
+# you have the FLEX_HOME environment variable set, as described above.
+# you clone or download this repository and simply run the default build.xml file e.g. "ant".
 
