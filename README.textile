@@ -1,3 +1,5 @@
-h1. AutoLib
+h1. HydraulicLib
 
-AutoLib is a free build structure to help automatically clone and build your favorite open source libraries. Included initially is linkage to RobotLegs, AS3Signals and MinimalComps.
+HydraulicLib is a free build structure to help automatically clone and build your favorite open source libraries. Included initially is linkage to RobotLegs, AS3Signals and MinimalComps.
+
+All of the libraries that are included rely on the FLEX_HOME environment variable being set. To set the FLEX_HOME environment variable use "export FLEX_HOME=[PATH TO YOUR FLEX SDK]".
