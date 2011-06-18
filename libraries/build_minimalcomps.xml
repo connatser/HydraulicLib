@@ -1,0 +1,73 @@
+<project name="BuildMinimalComps" default="init">
+
+    <property file="build.properties"/>
+
+    <macrodef name="git">
+        <attribute name="command"/>
+        <attribute name="dir" default=""/>
+        <element name="args" optional="true"/>
+        <sequential>
+            <echo message="git @{command}"/>
+            <exec executable="git" dir="@{dir}">
+                <arg value="@{command}"/>
+                <args/>
+            </exec>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="git-clone-pull">
+        <attribute name="repository"/>
+        <attribute name="dest"/>
+        <sequential>
+            <git command="clone">
+                <args>
+                    <arg value="@{repository}"/>
+                    <arg value="@{dest}"/>
+                </args>
+            </git>
+            <git command="pull" dir="@{dest}"/>
+        </sequential>
+    </macrodef>
+
+    <target name="init" depends="cleanup">
+        <echo message="All MinimalComps targets ran successfully."/>
+    </target>
+
+    <target name="buildMinimalComps" depends="cloneMinimalComps">
+        <echo message="Building the MinimalComps swc."/>
+        <ant antfile="${MINIMALCOMPS_LOCAL}/build.xml" dir="${MINIMALCOMPS_LOCAL}" target="CompileSWC"/>
+        <echo message="MinimalComps swc created successfully."/>
+    </target>
+
+    <target name="cleanup" depends="buildMinimalComps">
+        <echo message="Moving the MinimalComps swc."/>
+        <copy todir="${LIB_LOC}">
+            <fileset dir="${MINIMALCOMPS_LOCAL}/bin">
+                <include name="**/*.swc"/>
+            </fileset>
+        </copy>
+        <echo message="The MinimalComps swc been copied."/>
+
+        <echo message="Remove the MinimalComps clone"/>
+        <delete dir="${MINIMALCOMPS_LOCAL}"/>
+    </target>
+
+    <target name="cloneMinimalComps" depends="createMinimalCompsLocation">
+        <echo message="Cloning MinimalComps."/>
+        <git command="clone">
+            <args>
+                <arg value="${MINIMALCOMPS_REMOTE}"/>
+                <arg value="${MINIMALCOMPS_LOCAL}"/>
+            </args>
+        </git>
+        <echo message="Cloning MinimalComps complete."/>
+    </target>
+
+    <target name="createMinimalCompsLocation">
+        <echo message="Creating MinimalComps local directory."/>
+        <delete dir="${MINIMALCOMPS_LOCAL}"/>
+        <mkdir dir="${MINIMALCOMPS_LOCAL}"/>
+        <echo message="MinimalComps local directory created successfully."/>
+    </target>
+
+</project>
