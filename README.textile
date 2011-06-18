@@ -9,7 +9,7 @@ Included initially is linkage to:
 * "AS3Signals":https://github.com/robertpenner/as3-signals/wiki
 * "MinimalComps":http://www.minimalcomps.com/
 
-*Currently the build for MinimalComps pulls from "my fork":https://github.com/connatser/minimalcomps of Keith Peter's MinimalComps repository, which is currently in pull request status.
+*Currently the build for MinimalComps pulls from "my fork":https://github.com/connatser/minimalcomps of "Keith Peters'":http://www.bit-101.com/blog/ MinimalComps repository, which is currently in pull request status.
 
 h2. What happens "behind the scenes"?
 
