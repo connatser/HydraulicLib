@@ -13,6 +13,7 @@ Included initially is linkage to:
 * "RobotLegs":http://www.robotlegs.org/
 
 *Currently the build for MinimalComps pulls from "my fork":https://github.com/connatser/minimalcomps of "Keith Peters'":http://www.bit-101.com/blog/ MinimalComps repository, which is currently in pull request status.
+** The FlexUnit build is disabled by default due to the team typically releasing from the FlexUnit website. The build included in this structure should be considered bleeding edge.
 
 h2. What happens "behind the scenes"?
 
@@ -37,7 +38,7 @@ h2. Other info, etc., etc.
 
 This build structure is intended to make life easier by aggregating the build of the Flash communities most useful libraries, that are hosted on GitHub and are open source. HydraulicLib does not replace, alter or remove any of the original author's source code, it simply clones the source code just as you could manually. No code ownership is assumed to be taken from the original author of any of the libraries that are referenced and each will be given their full credit.
 
-If you would like more libraries to be added to this build structure feel free to ask, or go fork it yourself and submit a pull request.
+If you would like more libraries to be added to this build structure feel free to ask, or go fork it yourself and submit a pull request. Conversely if your library is included in this build structure and you would rather it not be, please contact me directly.
 
 h2. Due credit (keeping it real)
 
