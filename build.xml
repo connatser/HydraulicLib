@@ -4,20 +4,25 @@
     <property file="build.properties"/>
 
     <!-- Initialize RobotLegs local directory and clone -->
-    <target name="init" depends="buildRobotLegs, buildAS3Signals, buildMinimalComps">
+    <target name="init" depends="buildAS3Signals, buildAS3CoreLib, buildRobotLegs, buildMinimalComps">
         <echo message="All targets ran successfully."/>
-    </target>
-
-    <target name="buildRobotLegs">
-        <ant antfile="${ROBOTLEGS_BUILD}"/>
     </target>
 
     <target name="buildAS3Signals">
         <ant antfile="${AS3SIGNALS_BUILD}"/>
     </target>
 
+    <target name="buildAS3CoreLib">
+        <ant antfile="${AS3CORELIB_BUILD}"/>
+    </target>
+
     <target name="buildMinimalComps">
         <ant antfile="${MINIMALCOMPS_BUILD}"/>
     </target>
+
+    <target name="buildRobotLegs">
+        <ant antfile="${ROBOTLEGS_BUILD}"/>
+    </target>
+
 
 </project>

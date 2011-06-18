@@ -5,9 +5,10 @@ h2. What does HydraulicLib do?
 HydraulicLib is a build aggregator to help automatically clone and build your favorite open source libraries, in one command.
 
 Included initially is linkage to:
-* "RobotLegs":http://www.robotlegs.org/
 * "AS3Signals":https://github.com/robertpenner/as3-signals/wiki
+* "AS3CoreLib":https://github.com/mikechambers/as3corelib
 * "MinimalComps":http://www.minimalcomps.com/
+* "RobotLegs":http://www.robotlegs.org/
 
 *Currently the build for MinimalComps pulls from "my fork":https://github.com/connatser/minimalcomps of "Keith Peters'":http://www.bit-101.com/blog/ MinimalComps repository, which is currently in pull request status.
 

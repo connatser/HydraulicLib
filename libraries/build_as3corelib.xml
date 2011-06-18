@@ -1,0 +1,73 @@
+<project name="BuildAS3CoreLib" default="init">
+
+    <property file="build.properties"/>
+
+    <macrodef name="git">
+        <attribute name="command"/>
+        <attribute name="dir" default=""/>
+        <element name="args" optional="true"/>
+        <sequential>
+            <echo message="git @{command}"/>
+            <exec executable="git" dir="@{dir}">
+                <arg value="@{command}"/>
+                <args/>
+            </exec>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="git-clone-pull">
+        <attribute name="repository"/>
+        <attribute name="dest"/>
+        <sequential>
+            <git command="clone">
+                <args>
+                    <arg value="@{repository}"/>
+                    <arg value="@{dest}"/>
+                </args>
+            </git>
+            <git command="pull" dir="@{dest}"/>
+        </sequential>
+    </macrodef>
+
+    <target name="init" depends="cleanup">
+        <echo message="All AS3CoreLib targets ran successfully."/>
+    </target>
+
+    <target name="buildAS3CoreLib" depends="cloneAS3CoreLib">
+        <echo message="Building the AS3CoreLib swc."/>
+        <ant antfile="${AS3CORELIB_LOCAL}/build/build.xml" dir="${AS3CORELIB_LOCAL}" target="compile"/>
+        <echo message="AS3CoreLib swc created successfully."/>
+    </target>
+
+    <target name="cleanup" depends="buildAS3CoreLib">
+        <echo message="Moving the AS3CoreLib swc."/>
+        <copy todir="${LIB_LOC}">
+            <fileset dir="${AS3CORELIB_LOCAL}/bin">
+                <include name="**/*.swc"/>
+            </fileset>
+        </copy>
+        <echo message="The AS3CoreLib swc been copied."/>
+
+        <echo message="Remove the AS3CoreLib clone"/>
+        <delete dir="${AS3CORELIB_LOCAL}"/>
+    </target>
+
+    <target name="cloneAS3CoreLib" depends="createAS3CoreLibLocation">
+        <echo message="Cloning AS3CoreLib."/>
+        <git command="clone">
+            <args>
+                <arg value="${AS3CORELIB_REMOTE}"/>
+                <arg value="${AS3CORELIB_LOCAL}"/>
+            </args>
+        </git>
+        <echo message="Cloning AS3CoreLib complete."/>
+    </target>
+
+    <target name="createAS3CoreLibLocation">
+        <echo message="Creating AS3CoreLib local directory."/>
+        <delete dir="${AS3CORELIB_LOCAL}"/>
+        <mkdir dir="${AS3CORELIB_LOCAL}"/>
+        <echo message="AS3CoreLib local directory created successfully."/>
+    </target>
+
+</project>
