@@ -13,7 +13,7 @@ Included initially is linkage to:
 * "RobotLegs":http://www.robotlegs.org/
 
 *Currently the build for MinimalComps pulls from "my fork":https://github.com/connatser/minimalcomps of "Keith Peters'":http://www.bit-101.com/blog/ MinimalComps repository, which is currently in pull request status.
-** The FlexUnit build is disabled by default due to the team typically releasing from the FlexUnit website. The build included in this structure should be considered bleeding edge.
+*The FlexUnit build is disabled by default due to the team typically releasing from the FlexUnit website. The build included in this structure should be considered bleeding edge.
 
 h2. What happens "behind the scenes"?
 
