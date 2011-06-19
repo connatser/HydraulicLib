@@ -1,36 +1,51 @@
-<project name="My Project" default="init">
+<project name="HydraulicLib" default="init">
 
     <!-- load previously defined configuration properties file -->
     <property file="build.properties"/>
 
     <!-- Initialize RobotLegs local directory and clone -->
-    <target name="init" depends="buildAS3CoreLib, buildAS3Signals, buildFlexUnit, buildMinimalComps, buildMockolate, buildRobotLegs">
+    <target name="init"
+            depends="buildAS3CoreLib, buildAS3Signals, buildFlexUnit, buildMinimalComps, buildMockolate, buildRobotLegs">
         <echo message="All targets ran successfully."/>
     </target>
 
     <target name="buildAS3CoreLib">
+        <echo message="Beginning AS3CoreLib build"/>
         <ant antfile="${AS3CORELIB_BUILD}"/>
+        <echo message="AS3CoreLib build completed successfully"/>
     </target>
 
     <target name="buildAS3Signals">
+        <echo message="Beginning AS3Signals build"/>
         <ant antfile="${AS3SIGNALS_BUILD}"/>
+        <echo message="AS3Signals build completed successfully"/>
     </target>
 
     <target name="buildFlexUnit">
-        <!--Development release, uncomment build line below to pull-->
-        <!--<ant antfile="${FLEXUNIT_BUILD}"/>-->
+        <!--Development release, uncomment build lines below to pull-->
+        <!--
+        <echo message="Beginning FlexUnit build"/>
+        <ant antfile="${FLEXUNIT_BUILD}"/>
+        <echo message="FlexUnit build completed successfully"/>
+        -->
     </target>
 
     <target name="buildMinimalComps">
+        <echo message="Beginning MinimalComps build"/>
         <ant antfile="${MINIMALCOMPS_BUILD}"/>
+        <echo message="MinimalComps build completed successfully"/>
     </target>
 
     <target name="buildMockolate">
+        <echo message="Beginning Mockolate build"/>
         <ant antfile="${MOCKOLATE_BUILD}"/>
+        <echo message="Mockolate build completed successfully"/>
     </target>
 
     <target name="buildRobotLegs">
+        <echo message="Beginning RobotLegs build"/>
         <ant antfile="${ROBOTLEGS_BUILD}"/>
+        <echo message="RobotLegs build completed successfully"/>
     </target>
 
 
