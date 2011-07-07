@@ -40,7 +40,7 @@ This build structure is intended to make life easier by aggregating the build of
 
 If you would like more libraries to be added to this build structure feel free to ask, or go fork it yourself and submit a pull request. Conversely if your library is included in this build structure and you would rather it not be, please contact me directly.
 
-h2. Due credit (keeping it real)
+h2. Due credit (keeping it really real)
 
 HydraulicLib utilizes an Ant macrodef created by "Thomas Robinson":http://tlrobinson.net/blog/2008/11/13/ant-tasks-for-git/
 
